@@ -77,7 +77,7 @@ export const App = () => {
       return;
     }
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  }, [contacts, initialContacts]);
 
   const filterContacts = input => {
     setFilter(input);
