@@ -61,23 +61,16 @@ export const App = () => {
       number: '099-12345678',
     },
   ];
-
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useState(
+    localStorage.getItem('contacts')
+      ? JSON.parse(localStorage.getItem('contacts'))
+      : initialContacts
+  );
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    if (localStorage.getItem('contacts')) {
-      const savedContacts = JSON.parse(localStorage.getItem('contacts'));
-      setContacts(savedContacts);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (contacts === initialContacts) {
-      return;
-    }
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts, initialContacts]);
+  }, [contacts]);
 
   const filterContacts = input => {
     setFilter(input);
