@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Contacts = ({ contacts, filter, deleteContact }) => {
   const clichHandler = ({ target: { name } }) => {
     const id = name;
@@ -24,4 +26,10 @@ export const Contacts = ({ contacts, filter, deleteContact }) => {
       </ul>
     </>
   );
+};
+
+Contacts.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+  deleteContact: PropTypes.func.isRequired,
 };

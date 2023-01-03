@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
@@ -57,4 +59,8 @@ export const AddContact = ({ addContact }) => {
       <button type="submit">Add contact</button>
     </form>
   );
+};
+
+AddContact.propTypes = {
+  addContact: PropTypes.func.isRequired,
 };
