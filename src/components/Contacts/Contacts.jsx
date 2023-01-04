@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const Contacts = ({ contacts, filter, deleteContact }) => {
+export const Contacts = ({ filteredContacts, deleteContact }) => {
   const clichHandler = ({ target: { name } }) => {
     const id = name;
     deleteContact(id);
@@ -9,27 +9,22 @@ export const Contacts = ({ contacts, filter, deleteContact }) => {
   return (
     <>
       <ul>
-        {contacts
-          .filter(contact =>
-            contact.name.toLowerCase().includes(filter.toLowerCase())
-          )
-          .map(contact => (
-            <li key={contact.id}>
-              <p>
-                <b>{contact.name}:</b> {contact.number}
-              </p>
-              <button name={contact.id} onClick={clichHandler}>
-                Delete
-              </button>
-            </li>
-          ))}
+        {filteredContacts().map(contact => (
+          <li key={contact.id}>
+            <p>
+              <b>{contact.name}:</b> {contact.number}
+            </p>
+            <button name={contact.id} onClick={clichHandler}>
+              Delete
+            </button>
+          </li>
+        ))}
       </ul>
     </>
   );
 };
 
 Contacts.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
+  filteredContacts: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
 };

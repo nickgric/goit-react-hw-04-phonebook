@@ -61,6 +61,7 @@ export const App = () => {
       number: '099-12345678',
     },
   ];
+
   const [contacts, setContacts] = useState(
     localStorage.getItem('contacts')
       ? JSON.parse(localStorage.getItem('contacts'))
@@ -74,6 +75,12 @@ export const App = () => {
 
   const filterContacts = input => {
     setFilter(input);
+  };
+
+  const filteredContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
   };
 
   const addContact = newContact => {
@@ -103,8 +110,7 @@ export const App = () => {
       <Section title="Contacts">
         <Filter filterContacts={filterContacts} />
         <Contacts
-          contacts={contacts}
-          filter={filter}
+          filteredContacts={filteredContacts}
           deleteContact={deleteContact}
         />
       </Section>
